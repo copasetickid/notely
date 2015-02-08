@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/ctran/annotate_models.git
-  revision: 038b13c04e575cc0f0c89c702c994166c7dc9955
-  specs:
-    annotate (2.6.5)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,6 +39,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (6.0.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -102,9 +97,6 @@ GEM
     hike (1.2.3)
     hitimes (1.2.2)
     i18n (0.7.0)
-    jbuilder (2.2.6)
-      activesupport (>= 3.0.0, < 5)
-      multi_json (~> 1.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -130,6 +122,7 @@ GEM
     notiffany (0.0.4)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    pg (0.18.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -220,7 +213,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.10)
     terminal-notifier-guard (1.6.4)
     thor (0.19.1)
     thread_safe (0.3.4)
@@ -246,7 +238,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (= 0.9.3)
-  annotate!
+  annotate (~> 2.6.5)
   byebug
   codeclimate-test-reporter
   database_cleaner (= 1.3.0)
@@ -254,8 +246,8 @@ DEPENDENCIES
   factory_girl_rails (~> 4.5.0)
   fuubar
   guard-rspec
-  jbuilder (~> 2.0)
   jquery-rails
+  pg
   pry
   railroady
   rails (= 4.2.0)
@@ -264,7 +256,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers
   spring
-  sqlite3
   terminal-notifier-guard
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
