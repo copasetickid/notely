@@ -11,6 +11,6 @@
 
 FactoryGirl.define do
   factory :notebook do
-    title 'JavaScript Journey'
+    sequence(:title) {|n| "JavaScript Journey-#{n}" }
   end
 end
