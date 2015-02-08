@@ -10,5 +10,7 @@
 #
 
 class Notebook < ActiveRecord::Base
-   validates_presence_of :title
+	has_many :notes, dependent: :destroy
+  
+  validates_presence_of :title
 end
