@@ -28,9 +28,7 @@ RSpec.describe NotebooksController, type: :controller do
     end
 
     it "returns an error response if it doesn't exists" do
-      unfound_notebook = create(:note)
-
-      get :show, id: unfound_notebook
+      get :show, id: 1000
      
       expect(response.status).to eq 404
 
@@ -68,6 +66,29 @@ RSpec.describe NotebooksController, type: :controller do
 
 
   describe "PUT update" do
+    let(:notebook) { create(:notebook) }
+    it "updates a newbook" do   
+      put :update, id: notebook.id, notebook: { title: "jQuery Rules!"}
+     
+      expect(response.status).to eq 200
+      
+
+      json = JSON.parse(response.body)
+      notebook_response = json['notebook']
+      expect(notebook_response["title"]).to eq "jQuery Rules!"
+    end
+
+    it "returns an error response when the title is blank" do
+      put :update, id: notebook.id, notebook: { title: ""}
+     
+      expect(response.status).to eq 400
+
+      json = JSON.parse(response.body)
+      expect(json["errors"]).to eq "Title can't be blank"
+    end
+  end
+
+  describe "DELETE destory" do
     let(:notebook) { create(:notebook) }
     it "updates a newbook" do   
       put :update, id: notebook.id, notebook: { title: "jQuery Rules!"}
