@@ -6,7 +6,7 @@ class NotebooksController < ApplicationController
 		render json: notebooks, each_serializer: NotebookSerializer
 	end
 
-	def show
+	def show   
 		render json: @notebook
 	end
 
@@ -15,6 +15,9 @@ class NotebooksController < ApplicationController
 
   def find_notebook
     @notebook = Notebook.find(params[:id])
+  rescue ActiveRecord::RecordNotFound 
+    render json: { error: 'Notebook not found' }, status: 404
+    
   end
 
   def notebook_params

@@ -24,8 +24,18 @@ RSpec.describe NotebooksController, type: :controller do
 
       json = JSON.parse(response.body)
       notebook_response = json['notebook']
-
       expect(notebook_response["title"]).to eq notebook.title
+    end
+
+    it "returns an error response if it doesn't exists" do
+      unfound_notebook = create(:note)
+
+      get :show, id: unfound_notebook
+     
+      expect(response.status).to eq 404
+
+      json = JSON.parse(response.body)
+      expect(json["error"]).to eq "Notebook not found"
     end
   end
 end
