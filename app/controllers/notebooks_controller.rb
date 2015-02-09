@@ -10,13 +10,23 @@ class NotebooksController < ApplicationController
 		render json: @notebook
 	end
 
+  def create
+    notebook = Notebook.create(notebook_params)
+
+    if notebook.valid?
+      render json: notebook
+    else
+      render json: { errors: notebook.errors.full_messages.to_sentence }, status: 400
+    end
+  end
+
 
   private 
 
   def find_notebook
     @notebook = Notebook.find(params[:id])
-  rescue ActiveRecord::RecordNotFound 
-    render json: { error: 'Notebook not found' }, status: 404
+    rescue ActiveRecord::RecordNotFound 
+      render json: { error: 'Notebook not found' }, status: 404
     
   end
 

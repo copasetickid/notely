@@ -38,4 +38,31 @@ RSpec.describe NotebooksController, type: :controller do
       expect(json["error"]).to eq "Notebook not found"
     end
   end
+
+
+  describe "POST create" do
+    it "saves a newbook" do
+      notebook_attrs =  attributes_for(:notebook)
+      
+      post :create, notebook: notebook_attrs
+     
+      expect(response.status).to eq 200
+      notebook = Notebook.last
+
+      json = JSON.parse(response.body)
+      notebook_response = json['notebook']
+      expect(notebook_response["title"]).to eq notebook.title
+    end
+
+    it "returns an error response when the title is blank" do
+      unfound_notebook = create(:note)
+
+      post :create, notebook: {title: "", description: "Nexus 5 all day"}
+     
+      expect(response.status).to eq 400
+
+      json = JSON.parse(response.body)
+      expect(json["errors"]).to eq "Title can't be blank"
+    end
+  end
 end
