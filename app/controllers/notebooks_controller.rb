@@ -1,5 +1,5 @@
 class NotebooksController < ApplicationController
-	before_action :find_notebook, only: [:show]
+	before_action :find_notebook, only: [:show, :update]
 	
 	def index
 		notebooks = Notebook.all
@@ -17,6 +17,16 @@ class NotebooksController < ApplicationController
       render json: notebook
     else
       render json: { errors: notebook.errors.full_messages.to_sentence }, status: 400
+    end
+  end
+
+  def update
+    @notebook.update(notebook_params)
+
+    if @notebook.valid?
+      render json: @notebook
+    else
+      render json: { errors: @notebook.errors.full_messages.to_sentence }, status: 400
     end
   end
 
