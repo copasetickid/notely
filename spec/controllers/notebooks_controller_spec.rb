@@ -15,7 +15,7 @@ RSpec.describe NotebooksController, type: :controller do
   end
 
   describe "GET show" do
-    it "returns the book if it exists" do
+    it "returns the notebook if it exists" do
       notebook = create(:notebook) 
 
       get :show, id: notebook
@@ -39,7 +39,7 @@ RSpec.describe NotebooksController, type: :controller do
 
 
   describe "POST create" do
-    it "saves a newbook" do
+    it "saves a notebook" do
       notebook_attrs =  attributes_for(:notebook)
       
       post :create, notebook: notebook_attrs
@@ -91,12 +91,12 @@ RSpec.describe NotebooksController, type: :controller do
   describe "DELETE destory" do
     let!(:notebook) { create(:notebook) }
 
-    it "deletes a newbook when its found" do  
+    it "deletes a notebook when its found" do  
       expect { delete :destroy, id: notebook.id }.to change { Notebook.count }.by -1 
       expect(response.status).to eq 200  
     end
 
-    it "returns an success response when delted " do
+    it "returns an success response when a notebook is deleted" do
       delete :destroy, id: notebook.id 
      
       expect(response.status).to eq 200
