@@ -1,5 +1,5 @@
 class NotebooksController < ApplicationController
-	before_action :find_notebook, only: [:show, :update]
+	before_action :find_notebook, except: [:index, :create]
 	
 	def index
 		notebooks = Notebook.all
@@ -30,6 +30,12 @@ class NotebooksController < ApplicationController
     end
   end
 
+  def destroy
+  	notebook_title = @notebook.title
+  	Notebook.find(@notebook).destroy
+  	render json: { notebook: "#{notebook_title} was deleted."}
+  end
+
 
   private 
 
@@ -37,7 +43,6 @@ class NotebooksController < ApplicationController
     @notebook = Notebook.find(params[:id])
     rescue ActiveRecord::RecordNotFound 
       render json: { error: 'Notebook not found' }, status: 404
-    
   end
 
   def notebook_params

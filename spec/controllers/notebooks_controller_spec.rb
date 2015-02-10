@@ -89,25 +89,29 @@ RSpec.describe NotebooksController, type: :controller do
   end
 
   describe "DELETE destory" do
-    let(:notebook) { create(:notebook) }
-    it "updates a newbook" do   
-      put :update, id: notebook.id, notebook: { title: "jQuery Rules!"}
-     
-      expect(response.status).to eq 200
-      
+    let!(:notebook) { create(:notebook) }
 
-      json = JSON.parse(response.body)
-      notebook_response = json['notebook']
-      expect(notebook_response["title"]).to eq "jQuery Rules!"
+    it "deletes a newbook when its found" do  
+      expect { delete :destroy, id: notebook.id }.to change { Notebook.count }.by -1 
+      expect(response.status).to eq 200  
     end
 
-    it "returns an error response when the title is blank" do
-      put :update, id: notebook.id, notebook: { title: ""}
+    it "returns an success response when delted " do
+      delete :destroy, id: notebook.id 
      
-      expect(response.status).to eq 400
+      expect(response.status).to eq 200
 
       json = JSON.parse(response.body)
-      expect(json["errors"]).to eq "Title can't be blank"
+      expect(json["notebook"]).to eq "#{notebook.title} was deleted."
+    end
+
+    it "returns an error response when the notebook doesn't exists" do
+      get :show, id: 1000
+     
+      expect(response.status).to eq 404
+
+      json = JSON.parse(response.body)
+      expect(json["error"]).to eq "Notebook not found"
     end
   end
 end
