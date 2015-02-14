@@ -4,6 +4,7 @@ class NotebooksController < ApplicationController
 	def index
 		notebooks = Notebook.all
 		render json: notebooks, each_serializer: NotebookSerializer
+    #render json: ActiveModel::ArraySerializer.new(notebooks, each_serializer: NotebookSerializer)
 	end
 
 	def show   
