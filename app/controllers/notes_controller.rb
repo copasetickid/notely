@@ -14,9 +14,9 @@ class NotesController < ApplicationController
     note = Note.create(note_params)
 
     if note.valid?
-      render json: note
+      render json: { note: note }
     else
-      render json: { errors: note.errors.full_messages.to_sentence }, status: 400
+      render json: { errors: note.errors.full_messages.to_sentence }, status: 422
     end
   end
 
@@ -26,7 +26,7 @@ class NotesController < ApplicationController
     if @note.valid?
       render json: @note
     else
-      render json: { errors: @note.errors.full_messages.to_sentence }, status: 400
+      render json: { errors: @note.errors.full_messages.to_sentence }, status: 422
     end
   end
 

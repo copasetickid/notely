@@ -55,7 +55,7 @@ RSpec.describe NotesController, type: :controller do
     it "returns an error response when the title is blank" do
       post :create, note: {title: "", body: "Nexus 5 all day"}
      
-      expect(response.status).to eq 400
+      expect(response.status).to eq 422
 
       json = JSON.parse(response.body)
       expect(json["errors"]).to eq "Title can't be blank"
@@ -78,7 +78,7 @@ RSpec.describe NotesController, type: :controller do
     it "returns an error response when the title is blank" do
       put :update, id: note.id, note: { title: ""}
      
-      expect(response.status).to eq 400
+      expect(response.status).to eq 422
 
       json = JSON.parse(response.body)
       expect(json["errors"]).to eq "Title can't be blank"
