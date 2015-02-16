@@ -11,6 +11,7 @@ gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.3.3'
 
 gem "active_model_serializers", "0.8.3"
 gem "rack-cors", require: "rack/cors"
