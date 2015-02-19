@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "required": ["notebook"],
+  "properties": {
+    "notebook" : {
+      "type" : "object",
+      "required" : [
+        "id",
+        "body",
+        "title",
+        "notebook"
+      ],
+      "properties" : {
+        "title" : { "type" : "string" },
+        "body" : { "type" : "string" },
+        "notebook" : { "type" : "integer" },
+        "id" : { "type" : "integer" }
+      }
+    }
+  }
+}

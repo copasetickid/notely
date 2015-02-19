@@ -33,7 +33,7 @@ class NotebooksController < ApplicationController
 
   def destroy
   	notebook_title = @notebook.title
-  	Notebook.find(@notebook).destroy
+  	Notebook.find(@notebook.id).destroy
   	render json: { notebook: "#{notebook_title} was deleted."}
   end
 

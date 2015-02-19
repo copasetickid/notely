@@ -42,6 +42,7 @@ group :test do
   gem 'database_cleaner', '1.3.0'
   gem 'codeclimate-test-reporter', require: nil
   gem 'shoulda-matchers'
+  gem "json-schema"
 end
 
 group :development, :test do

@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 
   resources :notebooks
   resources :notes
+
+  namespace :api do
+  	get :csrf, to: 'csrf#index'
+	end
 end

@@ -50,6 +50,7 @@ RSpec.describe NotebooksController, type: :controller do
       json = JSON.parse(response.body)
       notebook_response = json['notebook']
       expect(notebook_response["title"]).to eq notebook.title
+      expect(response).to match_response_schema("notebook")
     end
 
     it "returns an error response when the title is blank" do
